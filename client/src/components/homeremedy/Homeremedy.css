@@ -1,0 +1,75 @@
+/* Add these styles to your CSS file */
+.heading {
+  font-size: 2.5em; /* Larger font size for heading */
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px; /* Additional space below the heading */
+}
+
+.heading::after {
+  content: "";
+  display: block;
+  width: 60%; /* Adjust width as needed */
+  height: 4px;
+  background-color: #333; /* Dark underline */
+  margin: 10px auto 0; /* Center and position the underline */
+}
+/* Add these styles to Homeremedy.css */
+.card-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.card {
+  flex: 0 0 auto;
+  width: 300px; /* Increased width for better spacing */
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card img {
+  height: auto;
+  max-height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.5em; /* Larger font size for title */
+}
+
+.card-description {
+  flex-grow: 1;
+  font-size: 0.9em; /* Smaller font size for description */
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  flex: 1;
+  margin: 5px;
+}
+
+.heading {
+  font-size: 2.5em; /* Larger font size for heading */
+  text-align: center;
+  position: relative;
+}
+
+.heading::after {
+  content: "";
+  display: block;
+  width: 60%; /* Greater underline length */
+  height: 4px;
+  background-color: #333; /* Dark underline */
+  margin: 10px auto;
+}

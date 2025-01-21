@@ -1,0 +1,56 @@
+/* Add these styles to Header.css */
+.navbar-nav .nav-item .nav-link {
+  font-size: 1.1rem;
+  margin-right: 15px;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #0c0c0cfe; /* Hover effect on links */
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.search-bar {
+  border-radius: 20px 0 0 20px;
+}
+
+.search-button {
+  border-radius: 0 20px 20px 0;
+  border-left: none;
+}
+
+.logo {
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 0%;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item i {
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .brand {
+    font-size: 1.2rem;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,63 @@
+.doctor-card {
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 20px auto; /* Center the card */
+  width: 100%; /* Full width of the column */
+  max-width: 100%; /* Ensure max-width doesn't go beyond the column */
+}
+
+.doctor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.img-fluid {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px; /* Rounded corners for the left side */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn-container button {
+  flex: 1;
+  margin: 5px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.card-text {
+  margin-bottom: 5px;
+}
+
+.heading {
+  font-size: 2.5em;
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.heading::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 4px;
+  background-color: #333;
+  margin: 10px auto 0;
+}

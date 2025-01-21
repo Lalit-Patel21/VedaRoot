@@ -1,0 +1,35 @@
+/* Slider.css */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 420px; /* Adjust the height as needed */
+  overflow: hidden;
+}
+
+.carousel-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-item img {
+  margin-top: 0% !important;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+body {
+  margin-top: 0px;
+  padding-top: 0px; /* Adjust according to your navbar height */
+}
+
+@media (min-width: 768px) {
+  .carousel {
+    margin-top: 10px; /* Adjust this if necessary */
+  }
+}
