@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Api from "../../apis/Api";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -107,6 +108,7 @@ export default function SetNewPassword() {
           </form>
         </div>
       </div>
+      <Footer />;
     </>
   );
 }

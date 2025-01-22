@@ -55,7 +55,9 @@ class YogaService {
 
   static async getYogaByCategory(categoryId) {
     try {
-      return await Yoga.find({ categoryId }).populate("categoryname");
+      return await Yoga.find({ categoryname: categoryId }).populate(
+        "categoryname"
+      );
     } catch (error) {
       throw new Error(error.message);
     }

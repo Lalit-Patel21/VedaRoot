@@ -8,14 +8,20 @@ import Api from "../../apis/Api";
 export default function DiseaseDetails() {
   const params = useParams();
   const [disease, setDisease] = useState({});
+  const [yoga, setYoga] = useState({});
+  const [remedy, setRemedy] = useState({});
+  const [product, setProduct] = useState({});
+
   useEffect(() => {
     getDiseaseById();
+    getYogaById();
+    getRemedyById();
+    getProductById();
   }, []);
 
   const getDiseaseById = async () => {
     try {
       let response = await axios.get(Api.DISEASE_BY_ID + `/${params.id}`);
-      //   console.log("we are in get start");
       //   console.log(Api.DISEASE_BY_ID + `/${params.id}`);
       console.log(response.data);
       setDisease(response.data);
@@ -23,6 +29,38 @@ export default function DiseaseDetails() {
       console.log(err);
     }
   };
+  const getYogaById = async () => {
+    try {
+      let response = await axios.get(Api.Yoga_BY_CATEGORY_ID + `/${params.id}`);
+      console.log(response.data);
+      setYoga(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const getRemedyById = async () => {
+    try {
+      let response = await axios.get(
+        Api.Remedy_BY_CATEGORY_ID + `/${params.id}`
+      );
+      console.log(response.data);
+      setRemedy(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const getProductById = async () => {
+    try {
+      let response = await axios.get(
+        Api.Product_BY_CATEGORY_ID + `/${params.id}`
+      );
+      console.log(response.data);
+      setProduct(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Header />

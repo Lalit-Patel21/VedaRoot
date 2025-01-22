@@ -76,7 +76,9 @@ class ProductService {
 
   static async getProductsByCategoryId(categoryId) {
     try {
-      return await Product.find({ categoryId }).populate("categoryname");
+      return await Product.find({ categoryname: categoryId }).populate(
+        "categoryname"
+      );
     } catch (error) {
       throw new Error(error.message);
     }

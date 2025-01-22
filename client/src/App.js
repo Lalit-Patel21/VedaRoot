@@ -40,7 +40,11 @@ import DoctorConsult from "./components/doctor/DoctorConsult.js";
 import DoctorAppoitment from "./components/doctor/DoctorAppoitment.js";
 import ViewProfileU from "./components/user/View-ProfileU.js";
 import ViewProfileD from "./components/doctor/ViewProfileD.js";
-import DoctorDashBoard from "./components/doctor/DoctorDashboard.js";
+import ViewAppointment from "./components/doctordashboard/ViewAppointment.js";
+import DoctorDashBoard from "./components/doctordashboard/DoctorDashboard.js";
+import ViewConsultant from "./components/doctordashboard/ViewConsultant";
+import UpdateProfileD from "./components/doctordashboard/DoctorDashboard.js";
+import Payment from "./components/order/Payment.js";
 
 function App() {
   return (
@@ -59,10 +63,13 @@ function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/view-profileu" element={<ViewProfileU />} />
-        <Route path="/view-profiled" element={<ViewProfileD />} />
+
         <Route path="/doctor" element={<Doctor />} />
         <Route path="/signInD" element={<SignInD />} />
         <Route path="/signUpD" element={<SignUpD />} />
+
+        <Route path="/doctordashboard" element={<DoctorDashBoard />} />
+        <Route path="/docverifyotp" element={<DoctorVerifyOTP />} />
 
         <Route path="/docforgatepassword" element={<DoctorForgatePassword />} />
         <Route path="/docverifyotp" element={<DoctorVerifyOTP />} />
@@ -79,7 +86,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/view-more/:id" element={<ViewMore />} />
         <Route
-          path="/buy-now/:id"
+          path="/buy-now"
           element={
             <Auth>
               <BuyNow />
@@ -101,6 +108,12 @@ function App() {
         <Route path="/yogam/get-start/:id" element={<GetStart />} />
         <Route path="/homeremedym/view-morehr/:id" element={<ViewMoreHR />} />
         <Route path="/doctordahboard" element={<DoctorDashBoard />} />
+        <Route path="/view-appointment" element={<ViewAppointment />} />
+        <Route path="/view-consultant" element={<ViewConsultant />} />
+        <Route path="/my-profiled" element={<ViewProfileD />} />
+        <Route path="/view-profiled" element={<ViewProfileD />} />
+        <Route path="/update-profiled" element={<UpdateProfileD />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </>
   );

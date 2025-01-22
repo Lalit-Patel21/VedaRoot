@@ -54,7 +54,9 @@ class HomeRemedyService {
 
   static async getHomeRemedyByCategoryId(categoryId) {
     try {
-      return await HomeRemedy.find({ categoryId }).populate("categoryname");
+      return await HomeRemedy.find({ categoryname: categoryId }).populate(
+        "categoryname"
+      );
     } catch (error) {
       throw new Error(error.message);
     }

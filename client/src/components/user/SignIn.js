@@ -3,7 +3,7 @@ import { useState } from "react";
 import Api from "../../apis/Api";
 import Header from "../header/Header";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux-config/UserSlice";
+import { setProfile } from "../../redux-config/ProfileSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -17,15 +17,26 @@ export default function SignIn() {
       event.preventDefault();
       let response = await axios.post(Api.SIGN_IN, { email, password });
       console.log(response.data);
-      dispatch(setUser(response.data));
+      const profileData = response.data;
+      // console.log("Dispatching setProfile with data:", {
+      //   profile: profileData.user,
+      //   token: profileData.token,
+      //   role: "user",
+      // }); // Updated line
+      dispatch(
+        setProfile({
+          profile: profileData.user,
+          token: profileData.token,
+          role: "user",
+        })
+      ); // Use this consistent structure
+      // dispatch(setProfile({ ...response.data, role: "user" }));
       if (response.status === 200) {
-        // Modified condition
-        toast.success("signin successfully");
+        toast.success("Sign in successfully");
+        navigate("/");
       } else {
-        toast.error("Failed to signIn");
+        toast.error("Failed to sign in");
       }
-      toast.success("signin successfully");
-      navigate("/");
     } catch (err) {
       console.log(err);
       toast.error("Invalid user");
@@ -44,7 +55,9 @@ export default function SignIn() {
           className="card shadow-lg"
           style={{ maxWidth: "400px", width: "100%" }}
         >
-          <h3 className="bg-success text-white text-center p-2">SignIn here</h3>
+          <h3 className="bg-success text-white text-center p-2">
+            Sign In here
+          </h3>
           <form className="p-4" onSubmit={handleSubmit}>
             <div className="form-group mb-3">
               <label htmlFor="email" className="form-label">

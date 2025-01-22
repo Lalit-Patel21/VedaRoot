@@ -2,12 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import Api from "../../apis/Api";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import { useDispatch } from "react-redux";
-import { setDoctor } from "../../redux-config/DoctorSlice";
+import { setProfile } from "../../redux-config/ProfileSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function SignIn() {
+export default function SignInD() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -17,8 +18,21 @@ export default function SignIn() {
       event.preventDefault();
       let response = await axios.post(Api.SIGN_IND, { email, password });
       console.log(response.data);
-      dispatch(setDoctor(response.data));
-      navigate("/doctordahboard");
+      const profileData = response.data;
+      dispatch(
+        setProfile({
+          profile: profileData.doctor,
+          token: profileData.token,
+          role: "doctor",
+        })
+      );
+      // dispatch(setProfile({ ...response.data, role: "doctor" }));
+      if (response.status === 200) {
+        toast.success("Sign in successfully");
+        navigate("/doctordashboard");
+      } else {
+        toast.error("Failed to sign in");
+      }
     } catch (err) {
       console.log(err);
       toast.error("Invalid Doctor");
@@ -38,7 +52,7 @@ export default function SignIn() {
           style={{ maxWidth: "400px", width: "100%" }}
         >
           <h3 className="bg-success text-white text-center p-2">
-            Doctor SignIn here
+            Doctor Sign In here
           </h3>
           <form className="p-4" onSubmit={handleSubmit}>
             <div className="form-group mb-3">
@@ -107,6 +121,7 @@ export default function SignIn() {
           </form>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

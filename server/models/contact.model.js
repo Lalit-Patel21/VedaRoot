@@ -2,17 +2,12 @@ import mongoose from "mongoose";
 
 const ContactSchema = new mongoose.Schema(
   {
-    // contactId: {
+    // userId: {
     //   type: mongoose.Schema.Types.ObjectId,
-    //   default: () => new mongoose.Types.ObjectId(),
-    //   unique: true,
+    //   ref: "User", // Foreign Key reference to User
+    //   required: true,
+    //   index: true,
     // },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Foreign Key reference to User
-      required: true,
-      index: true,
-    },
     name: {
       type: String,
       required: true,
@@ -26,12 +21,11 @@ const ContactSchema = new mongoose.Schema(
       unique: true,
       match: [/\S+@\S+\.\S+/, "is invalid"], // Email validation
     },
-    phoneNo: {
+    phone: {
       type: String,
       required: true,
-      match: [/^\d{10}$/, "is invalid"], // Phone number validation (example: 10 digits)
     },
-    subjectOfInquiry: {
+    subject: {
       type: String,
       required: true,
     },

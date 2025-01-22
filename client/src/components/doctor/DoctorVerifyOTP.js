@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Api from "../../apis/Api";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function VerifyOTP() {
@@ -113,6 +114,7 @@ export default function VerifyOTP() {
           )}
         </div>
       </div>
+      <Footer />;
     </>
   );
 }

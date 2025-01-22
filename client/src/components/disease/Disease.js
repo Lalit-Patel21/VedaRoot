@@ -32,6 +32,8 @@ function Disease() {
   return (
     <>
       <Header />
+
+      {/* for Disease information */}
       <div className="container mt-2">
         <h1 className="heading text-center mt-2 mb-2">Diseases</h1>
         <div className="row">
@@ -57,6 +59,9 @@ function Disease() {
           ))}
         </div>
       </div>
+      {/* homeremedy for the  Disease information */}
+      {/* yoga for the  Disease information */}
+      {/* Product for the  Disease information */}
       <Footer />
     </>
   );

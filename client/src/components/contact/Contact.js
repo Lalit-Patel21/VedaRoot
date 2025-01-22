@@ -9,8 +9,8 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
-    subject: "",
+    phoneNo: "", // Adjusted field name
+    subjectOfInquiry: "", // Adjusted field name
     message: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
@@ -41,7 +41,13 @@ const Contact = () => {
     }
     console.log(formData);
     axios
-      .post(Api.CONTACT_US, { formData })
+      .post(Api.CONTACT_US, {
+        name: formData.name,
+        email: formData.email,
+        phoneNo: formData.phoneNo, // Adjusted field name
+        subjectOfInquiry: formData.subjectOfInquiry, // Adjusted field name
+        message: formData.message,
+      })
       .then((response) => {
         console.log("Response:", response.data);
         // Set success message and clear form data
@@ -49,15 +55,18 @@ const Contact = () => {
         setFormData({
           name: "",
           email: "",
-          phone: "",
-          subject: "",
+          phoneNo: "",
+          subjectOfInquiry: "",
           message: "",
         });
         // Show success message popup
         setShowModal(true);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error(
+          "Error:",
+          error.response ? error.response.data : error.message
+        );
         // Set failure message if request fails
         setFailureMessage("Failed to send message. Please try again later.");
       });
@@ -73,13 +82,13 @@ const Contact = () => {
     } else if (!/\S+@\S+\.\S+/.test(data.email)) {
       errors.email = "Invalid email address";
     }
-    if (!data.phone.trim()) {
-      errors.phone = "Phone number is required";
-    } else if (!/^\d{10}$/.test(data.phone)) {
-      errors.phone = "Invalid phone number";
+    if (!data.phoneNo.trim()) {
+      errors.phoneNo = "Phone number is required";
+    } else if (!/^\d{10}$/.test(data.phoneNo)) {
+      errors.phoneNo = "Invalid phone number";
     }
-    if (!data.subject.trim()) {
-      errors.subject = "Subject is required";
+    if (!data.subjectOfInquiry.trim()) {
+      errors.subjectOfInquiry = "Subject is required";
     }
     if (!data.message.trim()) {
       errors.message = "Message is required";
@@ -104,7 +113,7 @@ const Contact = () => {
               <h2>Make An Enquiry</h2>
               <p>Hi please feel to contact us if you have any queries to us</p>
               <div className="contact-form mt-4">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <div className="row">
                       <div className="col-md-6">
@@ -156,13 +165,13 @@ const Contact = () => {
                             type="tel"
                             className="form-control form-control-sm custom-input mb-3"
                             id="phone"
-                            name="phone"
-                            value={formData.phone}
+                            name="phoneNo" // Changed from phone to phoneNo
+                            value={formData.phoneNo}
                             onChange={handleChange}
                             required
                           />
-                          {errors.phone && (
-                            <div className="text-danger">{errors.phone}</div>
+                          {errors.phoneNo && (
+                            <div className="text-danger">{errors.phoneNo}</div>
                           )}
                         </div>
                       </div>
@@ -175,13 +184,15 @@ const Contact = () => {
                             type="text"
                             className="form-control form-control-sm custom-input mb-3"
                             id="subject"
-                            name="subject"
-                            value={formData.subject}
+                            name="subjectOfInquiry" // Changed from subject to subjectOfInquiry
+                            value={formData.subjectOfInquiry}
                             onChange={handleChange}
                             required
                           />
-                          {errors.subject && (
-                            <div className="text-danger">{errors.subject}</div>
+                          {errors.subjectOfInquiry && (
+                            <div className="text-danger">
+                              {errors.subjectOfInquiry}
+                            </div>
                           )}
                         </div>
                       </div>
@@ -248,7 +259,7 @@ const Contact = () => {
         </div>
       </section>
       <br></br>
-      <Footer />;
+      <Footer />
       {/* <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title className="text-success">Success!</Modal.Title>

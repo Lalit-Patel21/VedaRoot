@@ -12,7 +12,7 @@ function Product() {
   const [productList, setProductList] = useState([]);
   const [cartList, setCartList] = useState([]);
   const navigate = useNavigate();
-  const { isLoggedIn, user } = useSelector((state) => state.User);
+  const { isLoggedIn, profile } = useSelector((state) => state.profile);
 
   useEffect(() => {
     loadProducts();
@@ -35,7 +35,7 @@ function Product() {
   const loadCart = async () => {
     try {
       let response = await axios.get(
-        Api.GET_PRODUCT_FROM_CART + `/${user._id}`
+        Api.GET_PRODUCT_FROM_CART + `/${profile._id}`
       );
       if (response.data && Array.isArray(response.data.items)) {
         setCartList(response.data.items);
@@ -47,9 +47,13 @@ function Product() {
     }
   };
 
-  const navigateToBuyNow = (id) => {
-    navigate(`/buy-now/${id}`);
+  const navigateToViewMore = (id) => {
+    navigate(`/view-more/${id}`);
   };
+
+  // const navigateToBuyNow = (id) => {
+  //   navigate(`/buy-now);
+  // };
 
   const addProductToCart = (productId) => {
     if (isLoggedIn) {
@@ -62,7 +66,7 @@ function Product() {
       } else {
         axios
           .post(Api.ADD_PRODUCT_TO_CART, {
-            userId: user._id,
+            userId: profile._id,
             productId,
             quantity: 1,
           })
@@ -113,11 +117,17 @@ function Product() {
                     : "No description available"}
                 </div>
                 <div className="btn-container">
-                  <button
+                  {/* <button
                     className="btn btn-primary"
                     onClick={() => navigateToBuyNow(product._id)}
                   >
                     Buy Now
+                  </button> */}
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigateToViewMore(product._id)}
+                  >
+                    View More
                   </button>
                   <button
                     className="btn btn-warning"

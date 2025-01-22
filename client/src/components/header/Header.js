@@ -1,63 +1,193 @@
+// import React, { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { signOut } from "../../redux-config/ProfileSlice";
+// import "./Header.css";
+// import { ToastContainer, toast } from "react-toastify";
+
+// function Header() {
+//   const navigate = useNavigate();
+//   const { isLoggedIn, role } = useSelector((state) => state.profile);
+//   const dispatch = useDispatch();
+//   const [dropdownOpen, setDropdownOpen] = useState(false);
+//   const toggleDropdown = () => {
+//     setDropdownOpen(!dropdownOpen);
+//   };
+
+//   return (
+//     <>
+//       <ToastContainer />
+//       <div className="container-fluid text-center bg-light">
+//         <div className="row align-items-center">
+//           <div className="col-md-4 p-2 d-flex flex-column justify-content-start">
+//             <img src="/images/logo2.png" alt="VedaRoot Logo" className="logo" />
+//             <h1 className="brand">VedaRoot</h1>
+//           </div>
+//           <div className="col-md-4 p-2 d-flex justify-content-center">
+//             <form action="#" className="w-100">
+//               <div className="input-group">
+//                 <input
+//                   type="text"
+//                   className="form-control search-bar"
+//                   placeholder="Search items....."
+//                 />
+//                 <button type="submit" className="btn btn-success search-button">
+//                   Search
+//                 </button>
+//               </div>
+//             </form>
+//           </div>
+//           <div className="col-md-4 p-2 d-flex justify-content-end">
+//             <nav className="navbar navbar-expand-sm">
+//               <ul className="navbar-nav">
+//                 <li className="nav-item">
+//                   <Link
+//                     to="/view-cart"
+//                     className="nav-link"
+//                     style={{ cursor: "pointer" }}
+//                   >
+//                     <i className="fas fa-shopping-cart"></i> Cart
+//                   </Link>
+//                 </li>
+//                 {!isLoggedIn && (
+//                   <li className="nav-item dropdown">
+//                     <a
+//                       className="nav-link dropdown-toggle"
+//                       href="#"
+//                       id="navbarDropdown"
+//                       role="button"
+//                       onClick={toggleDropdown}
+//                     >
+//                       <i className="fas fa-sign-in-alt"></i> Sign In
+//                     </a>
+//                     <div
+//                       className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}
+//                     >
+//                       <Link className="dropdown-item" to="/signIn">
+//                         <i className="fas fa-user"></i> User
+//                       </Link>
+//                       <Link className="dropdown-item" to="/signInD">
+//                         <i className="fas fa-user-md"></i> Doctor
+//                       </Link>
+//                     </div>
+//                   </li>
+//                 )}
+//                 {isLoggedIn && (
+//                   <>
+//                     <li className="nav-item">
+//                       <Link
+//                         to={
+//                           role === "user" ? "/view-profileu" : "/view-profiled"
+//                         }
+//                         className="nav-link"
+//                         style={{ cursor: "pointer" }}
+//                       >
+//                         <i className="fas fa-user"></i> View Profile
+//                       </Link>
+//                     </li>
+//                     <li className="nav-item">
+//                       <a
+//                         style={{ cursor: "pointer" }}
+//                         className="nav-link"
+//                         onClick={() => {
+//                           dispatch(signOut());
+//                           navigate("/");
+//                         }}
+//                       >
+//                         <i className="fas fa-sign-out-alt"></i> Sign out
+//                       </a>
+//                     </li>
+//                   </>
+//                 )}
+//               </ul>
+//             </nav>
+//           </div>
+//         </div>
+//       </div>
+//       <nav className="navbar navbar-expand-sm bg-success">
+//         <ul className="navbar-nav">
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/">
+//               Home
+//             </Link>
+//           </li>
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/disease">
+//               Disease
+//             </Link>
+//           </li>
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/homeremedym">
+//               Home Remedy
+//             </Link>
+//           </li>
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/productm">
+//               Product
+//             </Link>
+//           </li>
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/yogam">
+//               Yoga
+//             </Link>
+//           </li>
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/about">
+//               About Us
+//             </Link>
+//           </li>
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/doctor">
+//               Doctor
+//             </Link>
+//           </li>
+//           <li className="nav-item">
+//             <Link className="nav-link text-white" to="/contact">
+//               Contact
+//             </Link>
+//           </li>
+//         </ul>
+//       </nav>
+//     </>
+//   );
+// }
+
+// export default Header;
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../../redux-config/UserSlice";
+import { signOut } from "../../redux-config/ProfileSlice";
 import "./Header.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 function Header() {
-  // const navigate = useNavigate();
-  const { isLoggedIn, user } = useSelector((state) => state.User);
+  const navigate = useNavigate();
+  const { isLoggedIn, role } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  // const navigateToViewProfile = (id) => {
-  //   navigate(`/view-profileu/${id}`);
-  // };
-
-  // const navigateToCart = () => {
-  //   // console.log(isLoggedIn);
-  //   // console.log(user._id);
-  //   if (isLoggedIn) {
-  //     navigate(`/view-cart/${user._id}`);
-  //   } else {
-  //     alert("Please sign in to view your cart");
-  //   }
-  // };
-
   return (
     <>
       <ToastContainer />
       <div className="container-fluid text-center bg-light">
         <div className="row align-items-center">
-          {/* <div className="col-md-4 p-2 d-flex justify-content-start">
-            <img
-              src="./images/logo2.png"
-              alt="VedaRoot Logo"
-              className="logo"
-            />
+          <div className="col-md-4 p-2 d-flex flex-column justify-content-start">
+            <img src="/images/logo2.png" alt="VedaRoot Logo" className="logo" />
             <h1 className="brand">VedaRoot</h1>
-          </div> */}
-          <div class="col-md-4 p-2 d-flex flex-column justify-content-start">
-            <img src="/images/logo2.png" alt="VedaRoot Logo" class="logo" />
-            <h1 class="brand">VedaRoot</h1>
           </div>
           <div className="col-md-4 p-2 d-flex justify-content-center">
             <form action="#" className="w-100">
-              <div className="input-group ">
+              <div className="input-group">
                 <input
                   type="text"
-                  className="form-control search-bar "
-                  placeholder="Search items....."
+                  className="form-control search-bar"
+                  placeholder="Search items..."
                 />
-                <button
-                  type="submit"
-                  className="btn btn-success search-button "
-                >
-                  {/* <i className="fas fa-search"></i>  */}
+                <button type="submit" className="btn btn-success search-button">
                   Search
                 </button>
               </div>
@@ -70,7 +200,6 @@ function Header() {
                   <Link
                     to="/view-cart"
                     className="nav-link"
-                    // onClick={navigateToCart}
                     style={{ cursor: "pointer" }}
                   >
                     <i className="fas fa-shopping-cart"></i> Cart
@@ -100,27 +229,39 @@ function Header() {
                   </li>
                 )}
                 {isLoggedIn && (
-                  <>
-                    <li className="nav-item">
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      onClick={toggleDropdown}
+                    >
+                      <i className="fas fa-user"></i> Profile
+                    </a>
+                    <div
+                      className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}
+                    >
                       <Link
-                        to="/view-profileu"
-                        className="nav-link"
-                        // onClick={navigateToViewProfile}
-                        style={{ cursor: "pointer" }}
+                        className="dropdown-item"
+                        to={
+                          role === "user" ? "/view-profileu" : "/doctordahboard"
+                        }
                       >
-                        <i className="fas fa-user"></i> View Profile
+                        <i className="fas fa-user-circle"></i> My Profile
                       </Link>
-                    </li>
-                    <li className="nav-item">
                       <a
-                        style={{ cursor: "pointer" }}
-                        className="nav-link"
-                        onClick={() => dispatch(signOut())}
+                        className="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          dispatch(signOut());
+                          navigate("/");
+                        }}
                       >
-                        <i className="fas fa-sign-out-alt"></i> Sign out
+                        <i className="fas fa-sign-out-alt"></i> Sign Out
                       </a>
-                    </li>
-                  </>
+                    </div>
+                  </li>
                 )}
               </ul>
             </nav>
@@ -130,42 +271,42 @@ function Header() {
       <nav className="navbar navbar-expand-sm bg-success">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
+            <Link className="nav-link text-white hover-link" to="/">
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/disease">
+            <Link className="nav-link text-white hover-link" to="/disease">
               Disease
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/homeremedym">
+            <Link className="nav-link text-white hover-link" to="/homeremedym">
               Home Remedy
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/productm">
+            <Link className="nav-link text-white hover-link" to="/productm">
               Product
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/yogam">
+            <Link className="nav-link text-white hover-link" to="/yogam">
               Yoga
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/about">
+            <Link className="nav-link text-white hover-link" to="/about">
               About Us
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/doctor">
+            <Link className="nav-link text-white hover-link" to="/doctor">
               Doctor
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/contact">
+            <Link className="nav-link text-white hover-link" to="/contact">
               Contact
             </Link>
           </li>

@@ -6,11 +6,11 @@ export default function Sliderr() {
       id="carouselExampleInterval"
       className="carousel slide"
       data-bs-ride="carousel"
-      data-bs-interval="10000"
+      data-bs-interval="1000"
     >
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src="./images/home1.jpg" className="d-block w-100" alt="..." />
+          <img src="./images/home12.jpg" className="d-block w-100" alt="..." />
         </div>
         <div className="carousel-item">
           <img

@@ -26,7 +26,7 @@ import Api from "../../apis/Api";
 
 export default function ViewProfileU() {
   const [userProfile, setUserProfile] = useState(null);
-  const { isLoggedIn, user } = useSelector((state) => state.User);
+  const { isLoggedIn, profile } = useSelector((state) => state.profile);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -36,7 +36,7 @@ export default function ViewProfileU() {
 
   const loadUserProfile = async () => {
     try {
-      let response = await axios.get(Api.GET_USER_BY_ID + `/${user._id}`);
+      let response = await axios.get(Api.GET_USER_BY_ID + `/${profile._id}`);
       setUserProfile(response.data);
     } catch (err) {
       console.error(err);
@@ -63,7 +63,18 @@ export default function ViewProfileU() {
               <p className="card-text">
                 <strong>Contact Number: </strong> {userProfile.contactNumber}
               </p>
-              {/* Add more user information fields as needed */}
+              <p className="card-text">
+                <strong>Address : </strong> {userProfile.address}
+              </p>
+              <p className="card-text">
+                <strong>City : </strong> {userProfile.city}
+              </p>
+              <p className="card-text">
+                <strong>State: </strong> {userProfile.state}
+              </p>
+              <p className="card-text">
+                <strong>PinCode: </strong> {userProfile.pinCode}
+              </p>
             </div>
           </div>
         ) : (

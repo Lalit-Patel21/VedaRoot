@@ -10,20 +10,19 @@ function Product() {
   const [productList, setProductList] = useState([]);
   const [cartList, setCartList] = useState([]);
   const navigate = useNavigate();
-  const { isLoggedIn, user } = useSelector((state) => state.User);
+  const { isLoggedIn, profile } = useSelector((state) => state.profile);
 
   useEffect(() => {
     loadProducts();
-    if (isLoggedIn) {
+    if (isLoggedIn && profile && profile._id) {
       loadCart();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, profile]);
 
   const loadProducts = async () => {
     try {
       let response = await axios.get(Api.LOAD_PRODUCT);
       console.log(response);
-      console.log(response.data);
       setProductList(response.data);
     } catch (err) {
       console.log(err);
@@ -31,9 +30,14 @@ function Product() {
   };
 
   const loadCart = async () => {
+    if (!profile || !profile._id) {
+      console.error("Profile or User ID is undefined");
+      return;
+    }
     try {
+      console.log("Loading cart for user ID:", profile._id); // Debugging line
       let response = await axios.get(
-        Api.GET_PRODUCT_FROM_CART + `/${user._id}`
+        Api.GET_PRODUCT_FROM_CART + `/${profile._id}`
       );
       if (response.data && Array.isArray(response.data.items)) {
         setCartList(response.data.items);
@@ -49,11 +53,8 @@ function Product() {
     navigate(`view-more/${id}`);
   };
 
-  //  const navigateToBuyNow = (id) => {
-  //    navigate(`buy-now/${id}`);
-  //  };
   const addProductToCart = (productId) => {
-    if (isLoggedIn) {
+    if (isLoggedIn && profile && profile._id) {
       const isProductInCart = cartList.some(
         (item) => item.productId._id === productId
       );
@@ -63,14 +64,12 @@ function Product() {
       } else {
         axios
           .post(Api.ADD_PRODUCT_TO_CART, {
-            userId: user._id,
+            userId: profile._id,
             productId,
             quantity: 1,
           })
           .then((response) => {
-            console.log(response);
             if (response.status === 200) {
-              // Modified condition
               toast.success("Item added to cart.");
               loadCart(); // Reload cart to update the cart list
             } else {
@@ -105,12 +104,6 @@ function Product() {
               </div>
               <div className="text-center card-price">{product.price} Rs.</div>
               <div className="btn-container">
-                {/* <button
-                  className="btn btn-primary"
-                  onClick={() => navigateToBuyNow(product._id)}
-                >
-                  Buy Now
-                </button> */}
                 <button
                   className="btn btn-primary"
                   onClick={() => navigateToViewMore(product._id)}

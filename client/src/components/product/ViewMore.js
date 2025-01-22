@@ -10,12 +10,13 @@ import { ToastContainer, toast } from "react-toastify";
 export default function ViewMore() {
   const params = useParams();
   const [product, setProduct] = useState({});
+  const [cartList, setCartList] = useState([]);
+  const navigate = useNavigate();
+  const { isLoggedIn, profile } = useSelector((state) => state.profile);
+
   useEffect(() => {
     getProductById();
   }, []);
-  const [cartList, setCartList] = useState([]);
-  const navigate = useNavigate();
-  const { isLoggedIn, user } = useSelector((state) => state.User);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -26,7 +27,7 @@ export default function ViewMore() {
   const loadCart = async () => {
     try {
       let response = await axios.get(
-        Api.GET_PRODUCT_FROM_CART + `/${user._id}`
+        Api.GET_PRODUCT_FROM_CART + `/${profile._id}`
       );
       if (response.data && Array.isArray(response.data.items)) {
         setCartList(response.data.items);
@@ -38,8 +39,8 @@ export default function ViewMore() {
     }
   };
 
-  const navigateToBuyNow = (id) => {
-    navigate(`/buy-now/${id}`);
+  const navigateToBuyNow = (product) => {
+    navigate(`/buy-now`, { state: { product } });
   };
 
   const addProductToCart = (productId) => {
@@ -53,16 +54,14 @@ export default function ViewMore() {
       } else {
         axios
           .post(Api.ADD_PRODUCT_TO_CART, {
-            userId: user._id,
+            userId: profile._id,
             productId,
             quantity: 1,
           })
           .then((response) => {
-            console.log(response);
             if (response.status === 200) {
-              // Modified condition
               toast.success("Item added to cart.");
-              loadCart(); // Reload cart to update the cart list
+              loadCart();
             } else {
               toast.error("Failed to add product to cart.");
             }
@@ -80,15 +79,15 @@ export default function ViewMore() {
   const getProductById = async () => {
     try {
       let response = await axios.get(Api.PRODUCT_BY_ID + `/${params.id}`);
-      console.log("we are in now view more");
-      console.log(response.data);
       setProduct(response.data);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
+
   return (
     <>
+      <ToastContainer />
       <Header />
       <div className="container mt-5 mb-5">
         <div className="row d-flex justify-content-between">
@@ -99,6 +98,7 @@ export default function ViewMore() {
             <img
               src={product.imageUrl}
               style={{ width: "100%", height: "270px" }}
+              alt="product"
             />
           </div>
           <div
@@ -109,27 +109,23 @@ export default function ViewMore() {
               <h4>{product.title}</h4>
               <div>
                 <p>
-                  <b>brand :</b>
-                  {product.brand}
+                  <b>brand :</b> {product.brand}
                 </p>
               </div>
               <div>
                 <p>
-                  <b>description :</b>
-                  {product.description}
+                  <b>description :</b> {product.description}
                 </p>
               </div>
               <div>
-                <b>price :</b>
+                <b>price :</b>{" "}
                 <label className="text-success">{product.price} Rs.</label>
               </div>
-
               <div>
-                <b> rating :</b>
-                {product.rating}
+                <b> rating :</b> {product.rating}
               </div>
               <button
-                onClick={() => navigateToBuyNow(product._id)}
+                onClick={() => navigateToBuyNow(product)}
                 className="btn btn-warning p-2"
               >
                 Buy Now

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function Auth({ children }) {
-  const { isLoggedIn } = useSelector((store) => store.User);
+  const { isLoggedIn } = useSelector((store) => store.profile);
   if (isLoggedIn) return children;
   return <Navigate to="/signin" />;
 }

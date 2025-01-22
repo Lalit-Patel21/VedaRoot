@@ -11,7 +11,7 @@ import Footer from "../footer/Footer";
 function Doctor() {
   const [doctorList, setDoctorList] = useState([]);
   const navigate = useNavigate();
-  const { isLoggedIn, user } = useSelector((state) => state.User);
+  const { isLoggedIn, profile } = useSelector((state) => state.profile);
   useEffect(() => {
     loadDoctors();
   }, []);

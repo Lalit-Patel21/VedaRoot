@@ -26,14 +26,14 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("Form submitted: ", formData);
+      // console.log("Form submitted: ", formData);
       let response = await axios.post(Api.SIGN_UP, formData);
       console.log(response.data);
-      toast.success("signin successfully");
+      toast.success("signUp successfully");
       navigate("/signin");
     } catch (err) {
       console.log(err);
-      toast.error("Invalid user");
+      toast.error("unable to signUp ");
     }
   };
 
@@ -52,13 +52,14 @@ const Signup = () => {
               <div className="row mb-3">
                 <div className="col-md-6">
                   <label htmlFor="userName" className="form-label">
-                    Username
+                    Name
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="userName"
                     name="userName"
+                    placeholder="Enter Name"
                     value={formData.userName}
                     onChange={handleChange}
                     required
@@ -73,6 +74,7 @@ const Signup = () => {
                     className="form-control"
                     id="email"
                     name="email"
+                    placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -90,6 +92,7 @@ const Signup = () => {
                     className="form-control"
                     id="password"
                     name="password"
+                    placeholder="Enter Password "
                     value={formData.password}
                     onChange={handleChange}
                     required
@@ -104,6 +107,7 @@ const Signup = () => {
                     className="form-control"
                     id="contactNumber"
                     name="contactNumber"
+                    placeholder="Enter Contact Number"
                     value={formData.contactNumber}
                     onChange={handleChange}
                   />
@@ -120,6 +124,7 @@ const Signup = () => {
                     className="form-control"
                     id="address"
                     name="address"
+                    placeholder="Enter Address"
                     value={formData.address}
                     onChange={handleChange}
                   />
@@ -131,6 +136,7 @@ const Signup = () => {
                   <input
                     type="text"
                     className="form-control"
+                    placeholder="Enter your City"
                     id="city"
                     name="city"
                     value={formData.city}
@@ -146,6 +152,7 @@ const Signup = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter your State"
                     className="form-control"
                     id="state"
                     name="state"
@@ -159,6 +166,7 @@ const Signup = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter your Pincode"
                     className="form-control"
                     id="pinCode"
                     name="pinCode"
