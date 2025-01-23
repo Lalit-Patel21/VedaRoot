@@ -47,6 +47,7 @@ export default {
   VERIFY_OTP: "http://localhost:5000/api/user/verifyOTP",
   SET_NEW_PASSWORD: "http://localhost:5000/api/user/setNewPassword",
   UPDATE_PASSWORD: "http://localhost:5000/api/user/updatePassword",
-
+  UPDATE_USER: "http://localhost:5000/api/user/{id}",
+  UPDATE_PASSWORD: "http://localhost:5000/api/user/updatePassword",
   CONTACT_US: "http://localhost:5000/api/contact",
 };

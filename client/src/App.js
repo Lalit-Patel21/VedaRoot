@@ -63,16 +63,29 @@ function App() {
         <Route path="/diseasedetails/:id" element={<DiseaseDetails />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/userdashboard" element={<UserDashBoard />} />
+        <Route
+          path="/userdashboard"
+          element={
+            <Auth>
+              <UserDashBoard />
+            </Auth>
+          }
+        />
         <Route path="/view-profileu" element={<ViewProfileU />} />
 
         <Route path="/doctor" element={<Doctor />} />
         <Route path="/signInD" element={<SignInD />} />
         <Route path="/signUpD" element={<SignUpD />} />
 
-        <Route path="/doctordashboard" element={<DoctorDashBoard />} />
+        <Route
+          path="/doctordashboard"
+          element={
+            <Auth>
+              <DoctorDashBoard />
+            </Auth>
+          }
+        />
         <Route path="/docverifyotp" element={<DoctorVerifyOTP />} />
-
         <Route path="/docforgatepassword" element={<DoctorForgatePassword />} />
         <Route path="/docverifyotp" element={<DoctorVerifyOTP />} />
         <Route path="/docsetnewpassword" element={<DoctorSetNewPassword />} />
@@ -95,7 +108,14 @@ function App() {
             </Auth>
           }
         />
-        <Route path="/add-to-cart/:id" element={<AddToCart />} />
+        <Route
+          path="/add-to-cart/:id"
+          element={
+            <Auth>
+              <AddToCart />
+            </Auth>
+          }
+        />
         <Route
           path="view-cart"
           element={
