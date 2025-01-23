@@ -10,6 +10,7 @@ import Api from "../../apis/Api";
 import Appointment from "./ViewAppointment";
 import Consultant from "./ViewConsultant";
 import MyProfile from "../doctor/ViewProfileD";
+import DoctorUpdatePassword from "../doctor/DoctorUpdatePassword";
 import UpdateProfile from "./UpdateProfileD";
 import "./DoctorDashBoard.css"; // Import CSS file
 
@@ -46,6 +47,8 @@ export default function DoctorDashBoard() {
         return <MyProfile />;
       case "update-profile":
         return <UpdateProfile />;
+      case "docupdatepassword":
+        return <DoctorUpdatePassword />;
       default:
         return <Appointment />;
     }
@@ -98,10 +101,17 @@ export default function DoctorDashBoard() {
                     Update Profile
                   </Link>
                   <Link
+                    onClick={() => setActiveComponent("docupdatepassword")}
+                    to="#"
+                    className="list-group-item list-group-item-action custom-link"
+                  >
+                    Update Password
+                  </Link>
+                  <Link
                     className="list-group-item list-group-item-action custom-link"
                     onClick={() => {
-                      dispatch(signOut());
                       navigate("/");
+                      dispatch(signOut());
                     }}
                   >
                     Logout

@@ -7,15 +7,19 @@ import Footer from "../footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import Api from "../../apis/Api";
-import MyProfile from "../user/View-ProfileU";
+import MyProfile from "./View-ProfileU";
 import UpdateProfileU from "./UpdateProfileU";
-import "./DoctorDashBoard.css"; // Import CSS file
+import MyOrder from "../order/ViewOrder";
+// import "./UserDashBoard.css"; // Import CSS file
 import UpdatePassword from "./UpdatePassword";
+import MyAppointment from "./ViewAppoitmentU";
+import MyConsultant from "./ViewConsultantU";
 
 export default function UserDashBoard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userProfile, setUserProfile] = useState(null);
+  const [activeComponent, setActiveComponent] = useState("myprofile"); // Declare activeComponent state
   const { isLoggedIn, profile } = useSelector((state) => state.profile);
 
   useEffect(() => {
@@ -26,7 +30,7 @@ export default function UserDashBoard() {
 
   const loadUserProfile = async () => {
     try {
-      let response = await axios.get(Api.GET_User_BY_ID + `/${profile._id}`);
+      let response = await axios.get(Api.GET_USER_BY_ID + `/${profile._id}`);
       setUserProfile(response.data);
     } catch (err) {
       console.error(err);
@@ -36,19 +40,26 @@ export default function UserDashBoard() {
 
   const renderComponent = () => {
     switch (activeComponent) {
-      case "UpdateProfileU":
-        return <UpdateProfileU />;
+      case "myprofile":
+        return <MyProfile />;
       case "myorder":
         return <MyOrder />;
-      case "UpdatePassword":
+      case "myappoitment":
+        return <MyAppointment />;
+      case "myconsultant":
+        return <MyConsultant />;
+      case "updatepassword":
         return <UpdatePassword />;
-      case "MyProfile":
-        return <MyProfile />;
-      case "UpdateProfileU":
+      case "updateprofileu":
         return <UpdateProfileU />;
       default:
         return <MyProfile />;
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(signOut());
+    navigate("/");
   };
 
   return (
@@ -61,44 +72,51 @@ export default function UserDashBoard() {
             <div className="card text-center">
               <div className="card-body">
                 <img
-                  src={doctorProfile?.profileImage || "path/to/dummy-image.jpg"}
+                  src={userProfile?.profileImage || "path/to/dummy-image.jpg"}
                   className="rounded-circle img-fluid"
-                  alt="Doctor Profile"
+                  alt="user Profile"
                   width="150"
                   height="150"
                 />
-                <h5 className="card-title mt-3">{doctorProfile?.name}</h5>
+                <h5 className="card-title mt-3">{userProfile?.name}</h5>
                 <div className="list-group">
                   <Link
-                    onClick={() => setActiveComponent("")}
+                    onClick={() => setActiveComponent("myprofile")}
                     to="#"
                     className="list-group-item list-group-item-action custom-link"
                   >
-                    MyProfile
+                    Profile
                   </Link>
                   <Link
-                    onClick={() => setActiveComponent("consultant")}
+                    onClick={() => setActiveComponent("myorder")}
                     to="#"
                     className="list-group-item list-group-item-action custom-link"
                   >
-                    MyOrder
+                    Orders
                   </Link>
                   <Link
-                    onClick={() => setActiveComponent("my-profile")}
+                    onClick={() => setActiveComponent("myappoitment")}
                     to="#"
                     className="list-group-item list-group-item-action custom-link"
                   >
-                    MyAppoitment
+                    Appointments
                   </Link>
                   <Link
-                    onClick={() => setActiveComponent("update-profile")}
+                    onClick={() => setActiveComponent("myconsultant")}
+                    to="#"
+                    className="list-group-item list-group-item-action custom-link"
+                  >
+                    Consultant
+                  </Link>
+                  <Link
+                    onClick={() => setActiveComponent("updateprofileu")}
                     to="#"
                     className="list-group-item list-group-item-action custom-link"
                   >
                     Update Profile
                   </Link>
                   <Link
-                    onClick={() => setActiveComponent("update-profile")}
+                    onClick={() => setActiveComponent("updatepassword")}
                     to="#"
                     className="list-group-item list-group-item-action custom-link"
                   >
@@ -106,10 +124,7 @@ export default function UserDashBoard() {
                   </Link>
                   <Link
                     className="list-group-item list-group-item-action custom-link"
-                    onClick={() => {
-                      dispatch(signOut());
-                      navigate("/");
-                    }}
+                    onClick={handleLogout}
                   >
                     Logout
                   </Link>

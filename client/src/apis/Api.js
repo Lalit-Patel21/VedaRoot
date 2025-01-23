@@ -16,6 +16,8 @@ export default {
   GET_PRODUCT_FROM_CART: "http://localhost:5000/api/cart",
   REMOVE_PRODUCT_FROM_CART: "http://localhost:5000/api/cart/remove",
   ORDER: "http://localhost:5000/api/order/",
+  GET_ORDER_BY_USER_ID: "http://localhost:5000/api/order/user",
+  // http://localhost:5000/api/order/user/678ccc231b2d47cd554dcf59
 
   LOAD_YOGA: "http://localhost:5000/api/yoga",
   YOGA_BY_ID: "http://localhost:5000/api/yoga",

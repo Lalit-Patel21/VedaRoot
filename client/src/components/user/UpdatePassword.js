@@ -25,11 +25,9 @@ export default function UpdatePassword() {
   };
   return (
     <>
-      <Header />
       <ToastContainer />
-
       <div
-        className="container d-flex justify-content-center align-items-center"
+        className="container d-flex justify-content-center align-items-center mt-5"
         style={{ height: "70vh" }}
       >
         <div
@@ -81,7 +79,7 @@ export default function UpdatePassword() {
             </div>
             <div className="form-group mb-4">
               <button type="submit" className="btn btn-primary w-100">
-                SEND OTP
+                Update Password
               </button>
             </div>
           </form>

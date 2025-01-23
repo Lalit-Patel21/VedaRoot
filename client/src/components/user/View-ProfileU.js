@@ -1,21 +1,3 @@
-// import Header from "../header/Header";
-// import Footer from "../footer/Footer";
-
-// import { ToastContainer, toast } from "react-toastify";
-
-// export default function ViewProfileU() {
-//   return (
-//     <>
-//       <ToastContainer />
-//       <Header />
-//       <div className="container - mt-5">
-//         <h1>ViewProfileU component...</h1>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// }
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../header/Header";
@@ -47,9 +29,10 @@ export default function ViewProfileU() {
   return (
     <>
       <ToastContainer />
-      <Header />
       <div className="container mt-5">
-        <h1 className="text-center mb-4">User Profile</h1>
+        <h1 className="bg-success text-white text-center p-3 mt-5">
+          User Profile
+        </h1>
         {userProfile ? (
           <div className="card">
             <div className="card-body">
@@ -81,7 +64,6 @@ export default function ViewProfileU() {
           <p className="text-center">Loading profile...</p>
         )}
       </div>
-      <Footer />
     </>
   );
 }

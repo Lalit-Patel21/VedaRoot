@@ -4,7 +4,9 @@ export default function DoctorConsult() {
     <>
       <Header />
       <div className="container - mt-5">
-        <h1>DoctorConsult component...</h1>
+        <h1 bg-success text-white text-center p-3>
+          DoctorConsult component...
+        </h1>
       </div>
     </>
   );

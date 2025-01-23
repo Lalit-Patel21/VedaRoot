@@ -94,7 +94,7 @@ function Header() {
                       <Link
                         className="dropdown-item"
                         to={
-                          role === "user" ? "/view-profileu" : "/doctordahboard"
+                          role === "user" ? "/userdashboard" : "/doctordahboard"
                         }
                       >
                         <i className="fas fa-user-circle"></i> My Profile

@@ -45,6 +45,7 @@ import DoctorDashBoard from "./components/doctordashboard/DoctorDashboard.js";
 import ViewConsultant from "./components/doctordashboard/ViewConsultant";
 import UpdateProfileD from "./components/doctordashboard/DoctorDashboard.js";
 import Payment from "./components/order/Payment.js";
+import UserDashBoard from "./components/user/UserDashBoard.js";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route path="/diseasedetails/:id" element={<DiseaseDetails />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/userdashboard" element={<UserDashBoard />} />
         <Route path="/view-profileu" element={<ViewProfileU />} />
 
         <Route path="/doctor" element={<Doctor />} />
