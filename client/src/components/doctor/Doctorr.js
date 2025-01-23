@@ -28,9 +28,12 @@ function Doctor() {
   };
 
   const navigateToConsult = (id) => {
+    console.log("Doctor Id", id);
+    console.log(id);
     navigate(`/consult/${id}`);
   };
   const navigateToAppointment = (id) => {
+    console.log("Doctor Id", id);
     navigate(`/appointment/${id}`);
   };
 
@@ -59,15 +62,15 @@ function Doctor() {
                         <strong>Specialization:</strong> {doctor.specialization}
                       </p>
                       <p className="card-text">
-                        <strong>Experience:</strong> {doctor.details.experience}
+                        <strong>Experience:</strong> {doctor.details.experience}{" "}
                         years
                       </p>
                       <p className="card-text">
-                        <strong>Qualification:</strong>
+                        <strong>Qualification:</strong>{" "}
                         {doctor.details.qualification}
                       </p>
                       <p className="card-text">
-                        <strong>Clinic Address:</strong>
+                        <strong>Clinic Address:</strong>{" "}
                         {doctor.details.clinicAddress}
                       </p>
                       <p className="card-text">

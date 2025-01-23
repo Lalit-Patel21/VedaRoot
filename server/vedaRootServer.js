@@ -13,7 +13,7 @@ import homeRemedyRoutes from "./routes/homeRemedy.routes.js";
 import diseaseRoutes from "./routes/disease.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
 import doctorRoutes from "./routes/doctor.routes.js";
-// import appoitmentRoutes from "./routes/appoitment.routes.js";
+import appointRoutes from "./routes/appointment.routes.js";
 // import consultRoutes from "./routes/consult.routes.js";
 
 import cors from "cors";
@@ -51,7 +51,7 @@ app.use("/api/homeRemedy", homeRemedyRoutes);
 app.use("/api/disease", diseaseRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/doctor", doctorRoutes);
-// app.use("/api/appoitment", appoitmentRoutes);
+app.use("/api/appoitment", appointRoutes);
 // app.use("/api/consult", consultRoutes);
 
 // Root endpoint

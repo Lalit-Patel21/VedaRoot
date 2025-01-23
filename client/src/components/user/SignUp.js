@@ -41,7 +41,7 @@ const Signup = () => {
     <>
       <ToastContainer />
       <Header />
-      <div className="container-fluid mt-5">
+      <div className="container-fluid mt-5 mb-5">
         <div className="row justify-content-center">
           <div className="col-md-8 col-lg-6">
             <h2 className="text-center  bg-success mb-2">SignUp here</h2>
@@ -205,6 +205,25 @@ const Signup = () => {
                     SignIn?
                   </a>
                 </small>
+              </div>
+              <div className="text-center mb-3">
+                <span>or sign in with</span>
+              </div>
+              <div className="d-flex justify-content-around">
+                <a
+                  href="/auth/google"
+                  className="btn btn-outline-danger w-45 d-flex align-items-center justify-content-center"
+                  style={{ width: "48%" }}
+                >
+                  <i className="fab fa-google me-2"></i> Google
+                </a>
+                <a
+                  href="/auth/github"
+                  className="btn btn-outline-dark w-45 d-flex align-items-center justify-content-center"
+                  style={{ width: "48%" }}
+                >
+                  <i className="fab fa-github me-2"></i> GitHub
+                </a>
               </div>
             </form>
           </div>

@@ -35,6 +35,9 @@ export default {
   SET_NEW_PASSWORD_DOCTOR: "http://localhost:5000/api/doctor/setnewpassword",
   UPDATE_PASSWORD_DOCTOR: "http://localhost:5000/api/doctor/updatepassword",
   GET_Doctor_BY_ID: "http://localhost:5000/api/doctor",
+  BOOK_APPOITMENT: "http://localhost:5000/api/appoitment",
+  GET_DOCTOR_APPOITMENT: "http://localhost:5000/api/appoitment/doctor",
+  GET_USER_APPOITMENT: "http://localhost:5000/api/appoitment/user",
 
   LOAD_DOCTOR: "http://localhost:5000/api/doctor",
 

@@ -9,6 +9,7 @@ export default function ViewMoreHR() {
   const params = useParams();
   const [homeremedy, setHomeremedy] = useState({});
   const navigate = useNavigate();
+
   useEffect(() => {
     getHomeremedyById();
   }, []);
@@ -23,6 +24,7 @@ export default function ViewMoreHR() {
       console.log(err);
     }
   };
+
   return (
     <>
       <Header />
@@ -30,39 +32,34 @@ export default function ViewMoreHR() {
         <div className="row d-flex justify-content-between">
           <div
             className="col-md-6 d-flex flex-column"
-            style={{ height: "520px", boxShadow: "10px 10px 10px grey" }}
+            style={{ boxShadow: "10px 10px 10px grey" }}
           >
             <img
               src={homeremedy.imageUrl}
-              style={{ width: "100%", height: "420px" }}
+              style={{ width: "100%", height: "auto", objectFit: "contain" }}
+              alt={homeremedy.remedyName}
             />
           </div>
           <div
             className="col-md-6"
-            style={{ height: "520px", boxShadow: "10px 10px 10px grey" }}
+            style={{ boxShadow: "10px 10px 10px grey" }}
           >
             <div className="p-3 d-flex flex-column">
               <h3>{homeremedy.remedyName}</h3>
               <p>
-                <b>HomeRemedy Name :</b> {homeremedy.remedyName}
+                <b>HomeRemedy Name:</b> {homeremedy.remedyName}
               </p>
               <p>
-                <b>ingredients:</b>
-                {homeremedy.ingredients}
+                <b>Ingredients:</b> {homeremedy.ingredients}
               </p>
-
               <p>
-                <b>caution:</b>
-                {homeremedy.caution}
+                <b>Caution:</b> {homeremedy.caution}
               </p>
               <div>
-                <b>description:</b>
-                {homeremedy.description}
+                <b>Description:</b> {homeremedy.description}
               </div>
-              <br></br>
-              <div>
-                <b>instructions:</b>
-                {homeremedy.instructions}
+              <div className="mt-3">
+                <b>Instructions:</b> {homeremedy.instructions}
               </div>
             </div>
           </div>

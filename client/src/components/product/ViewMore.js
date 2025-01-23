@@ -93,49 +93,51 @@ export default function ViewMore() {
         <div className="row d-flex justify-content-between">
           <div
             className="col-md-6 d-flex flex-column"
-            style={{ height: "400px", boxShadow: "10px 10px 10px grey" }}
+            style={{ boxShadow: "10px 10px 10px 10px grey", cursor: "pointer" }}
           >
             <img
               src={product.imageUrl}
-              style={{ width: "100%", height: "270px" }}
+              style={{ width: "100%", height: "300px", objectFit: "contain" }}
               alt="product"
             />
           </div>
           <div
             className="col-md-6"
-            style={{ height: "400px", boxShadow: "10px 10px 10px grey" }}
+            style={{ boxShadow: "10px 10px 10px grey" }}
           >
             <div className="p-3 d-flex flex-column">
               <h4>{product.title}</h4>
               <div>
                 <p>
-                  <b>brand :</b> {product.brand}
+                  <b>Brand:</b> {product.brand}
                 </p>
               </div>
               <div>
                 <p>
-                  <b>description :</b> {product.description}
+                  <b>Description:</b> {product.description}
                 </p>
               </div>
               <div>
-                <b>price :</b>{" "}
+                <b>Price:</b>
                 <label className="text-success">{product.price} Rs.</label>
               </div>
               <div>
-                <b> rating :</b> {product.rating}
+                <b>Rating:</b> {product.rating}
               </div>
-              <button
-                onClick={() => navigateToBuyNow(product)}
-                className="btn btn-warning p-2"
-              >
-                Buy Now
-              </button>
-              <button
-                onClick={() => addProductToCart(product._id)}
-                className="btn btn-primary p-2"
-              >
-                Add To Cart
-              </button>
+              <div className="mt-3 d-flex">
+                <button
+                  onClick={() => navigateToBuyNow(product)}
+                  className="btn btn-warning p-2 me-2"
+                >
+                  Buy Now
+                </button>
+                <button
+                  onClick={() => addProductToCart(product._id)}
+                  className="btn btn-primary p-2"
+                >
+                  Add To Cart
+                </button>
+              </div>
             </div>
           </div>
         </div>

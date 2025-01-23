@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt"; // Import bcrypt for password hashing
+import bcrypt from "bcrypt";
 
 const DoctorSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -20,12 +20,33 @@ const DoctorSchema = new mongoose.Schema({
     unique: true,
     match: [/^\d{10}$/, "is invalid"], // Phone number validation (example: 10 digits)
   },
+
+  address: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  pinCode: {
+    type: String,
+  },
+  // gender: {
+  //   type: String,
+  // },
+
+  lastLogin: { type: Date, default: Date.now },
+  gender: { type: String, enum: ["Male", "Female", "Other"] },
+
   registrationNumber: { type: String, unique: true },
   specialization: String,
   details: {
     time: String,
     qualification: String,
     experience: Number,
+    consultationFee: Number,
     clinicAddress: String,
     consultationFee: Number,
     availability: [String],

@@ -12,13 +12,10 @@ const router = express.Router();
 
 // Validation rules
 const validateContact = [
-  // body("userId").isMongoId().withMessage("User ID must be a valid ObjectId"),
   body("name").notEmpty().withMessage("Name is required"),
   body("email").isEmail().withMessage("Email is invalid"),
-  body("phoneNo").notEmpty().withMessage("Phone number is required"),
-  body("subjectOfInquiry")
-    .notEmpty()
-    .withMessage("Subject of inquiry is required"),
+  body("phone").notEmpty().withMessage("Phone number is required"),
+  body("subject").notEmpty().withMessage("Subject is required"),
   body("message").notEmpty().withMessage("Message is required"),
 ];
 const validateStatus = [

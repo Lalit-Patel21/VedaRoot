@@ -84,9 +84,9 @@ function ViewCart() {
     );
   };
 
-  const navigateToBuyNow = (product) => {
-    navigate(`/buy-now`, { state: { product } });
-  };
+  // const navigateToBuyNow = (product) => {
+  //   navigate(`/buy-now`, { state: { product } });
+  // };
 
   const navigateToRemoveFromCart = async (productId) => {
     try {
