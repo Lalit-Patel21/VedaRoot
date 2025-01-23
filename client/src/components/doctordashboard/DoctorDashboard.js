@@ -110,7 +110,7 @@ export default function DoctorDashBoard() {
                   <Link
                     className="list-group-item list-group-item-action custom-link"
                     onClick={() => {
-                      navigate("/");
+                      navigate("/signIn");
                       dispatch(signOut());
                     }}
                   >

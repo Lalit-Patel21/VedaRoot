@@ -58,8 +58,8 @@ export default function UserDashBoard() {
   };
 
   const handleLogout = () => {
-    dispatch(signOut());
     navigate("/");
+    dispatch(signOut());
   };
 
   return (
