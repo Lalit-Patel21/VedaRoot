@@ -10,10 +10,10 @@ import Api from "../../apis/Api";
 import MyProfile from "./View-ProfileU";
 import UpdateProfileU from "./UpdateProfileU";
 import MyOrder from "../order/ViewOrder";
-// import "./UserDashBoard.css"; // Import CSS file
 import UpdatePassword from "./UpdatePassword";
 import MyAppointment from "./ViewAppoitmentU";
 import MyConsultant from "./ViewConsultantU";
+import "./UserDashBoard.css";
 
 export default function UserDashBoard() {
   const navigate = useNavigate();
@@ -72,55 +72,67 @@ export default function UserDashBoard() {
             <div className="card text-center">
               <div className="card-body">
                 <img
-                  src={userProfile?.profileImage || "path/to/dummy-image.jpg"}
+                  src={userProfile?.profileImage || "path/to/user-logo.jpg"}
                   className="rounded-circle img-fluid"
                   alt="user Profile"
                   width="150"
                   height="150"
                 />
-                <h5 className="card-title mt-3">{userProfile?.name}</h5>
+                <h5 className="card-title mt-3">{userProfile?.userName}</h5>
                 <div className="list-group">
                   <Link
                     onClick={() => setActiveComponent("myprofile")}
                     to="#"
-                    className="list-group-item list-group-item-action custom-link"
+                    className={`list-group-item list-group-item-action custom-link ${
+                      activeComponent === "myprofile" ? "active" : ""
+                    }`}
                   >
                     Profile
                   </Link>
                   <Link
                     onClick={() => setActiveComponent("myorder")}
                     to="#"
-                    className="list-group-item list-group-item-action custom-link"
+                    className={`list-group-item list-group-item-action custom-link ${
+                      activeComponent === "myorder" ? "active" : ""
+                    }`}
                   >
                     Orders
                   </Link>
                   <Link
                     onClick={() => setActiveComponent("myappoitment")}
                     to="#"
-                    className="list-group-item list-group-item-action custom-link"
+                    className={`list-group-item list-group-item-action custom-link ${
+                      activeComponent === "myappoitment" ? "active" : ""
+                    }`}
                   >
                     Appointments
                   </Link>
                   <Link
                     onClick={() => setActiveComponent("myconsultant")}
                     to="#"
-                    className="list-group-item list-group-item-action custom-link"
+                    className={`list-group-item list-group-item-action custom-link ${
+                      activeComponent === "myconsultant" ? "active" : ""
+                    }`}
                   >
                     Consultant
                   </Link>
                   <Link
                     onClick={() => setActiveComponent("updateprofileu")}
                     to="#"
-                    className="list-group-item list-group-item-action custom-link"
+                    className={`list-group-item list-group-item-action custom-link ${
+                      activeComponent === "updateprofileu" ? "active" : ""
+                    }`}
                   >
                     Update Profile
                   </Link>
                   <Link
                     onClick={() => setActiveComponent("updatepassword")}
                     to="#"
-                    className="list-group-item list-group-item-action custom-link"
+                    className={`list-group-item list-group-item-action custom-link ${
+                      activeComponent === "updatepassword" ? "active" : ""
+                    }`}
                   >
-                    Updated Password
+                    Update Password
                   </Link>
                   <Link
                     className="list-group-item list-group-item-action custom-link"

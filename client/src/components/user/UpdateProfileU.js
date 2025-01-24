@@ -1,19 +1,9 @@
-// export default function UpdateProfileU() {
-//   return (
-//     <>
-//       <div className="container bg-success text-white text-center p-3 mt-5">
-//         <h1>UpdateProfileU component...</h1>
-//       </div>
-//     </>
-//   );
-// }
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { setProfile } from "../../redux-config/ProfileSlice";
 import Api from "../../apis/Api";
-import Header from "../header/Header";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -21,9 +11,6 @@ export default function UpdateProfileU() {
   const { profile, token, isLoggedIn } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  // State for toggling different views
-  const [isEditing, setIsEditing] = useState(false);
 
   // States for profile information
   const [userName, setUserName] = useState(profile.userName || "");
@@ -56,7 +43,6 @@ export default function UpdateProfileU() {
 
       // Show success message
       toast.success("Profile updated successfully!");
-      setIsEditing(false); // Exit editing mode
     } catch (error) {
       console.error("Error updating profile:", error);
       toast.error("Failed to update profile. Please try again.");
@@ -73,102 +59,64 @@ export default function UpdateProfileU() {
       <div className="user-profile">
         <div className="container mt-5">
           <div className="row">
-            <div className="col-md-3">
-              {isLoggedIn ? (
-                <div className="list-group">
-                  {/* Edit Profile Button */}
-                  <button
-                    className="list-group-item list-group-item-action"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    Edit Profile
-                  </button>
-                </div>
-              ) : (
-                <p className="text-center">
-                  Please log in to view your profile.
-                </p>
-              )}
-            </div>
-
-            <div className="col-md-9">
+            <div className="col-md-12">
               {isLoggedIn ? (
                 <div className="card">
                   <div className="card-body">
-                    <h5 className="card-title bg-success text-white text-center p-2">
-                      Profile Information
-                    </h5>
-
                     {/* Edit Profile Form */}
-                    {isEditing ? (
-                      <form onSubmit={handleSaveProfile}>
-                        <div className="form-group">
-                          <label htmlFor="userName">
-                            <strong>Name:</strong>
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="userName"
-                            value={userName}
-                            onChange={(e) => setUserName(e.target.value)}
-                          />
-                        </div>
+                    <form onSubmit={handleSaveProfile}>
+                      <div className="form-group">
+                        <label htmlFor="userName">
+                          <strong>Name:</strong>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="userName"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                        />
+                      </div>
 
-                        <div className="form-group">
-                          <label htmlFor="email">
-                            <strong>Email:</strong>
-                          </label>
-                          <input
-                            type="email"
-                            className="form-control"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                          />
-                        </div>
+                      <div className="form-group">
+                        <label htmlFor="email">
+                          <strong>Email:</strong>
+                        </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
 
-                        <div className="form-group">
-                          <label htmlFor="contactNumber">
-                            <strong>Contact Number:</strong>
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="contactNumber"
-                            value={contactNumber}
-                            onChange={(e) => setContactNumber(e.target.value)}
-                          />
-                        </div>
+                      <div className="form-group">
+                        <label htmlFor="contactNumber">
+                          <strong>Contact Number:</strong>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="contactNumber"
+                          value={contactNumber}
+                          onChange={(e) => setContactNumber(e.target.value)}
+                        />
+                      </div>
 
-                        <button type="submit" className="btn btn-success">
+                      <div className="form-row">
+                        <button type="submit" className="btn btn-success mr-2">
                           Save Changes
                         </button>
                         <button
                           type="button"
-                          className="btn btn-danger ml-2"
-                          onClick={() => setIsEditing(false)}
+                          className="btn btn-danger"
+                          onClick={() => navigate("/")}
                         >
                           Cancel
                         </button>
-                      </form>
-                    ) : (
-                      // View Profile Section (if not editing)
-                      <div>
-                        <p>
-                          <strong>Name: </strong>
-                          {profile.userName}
-                        </p>
-                        <p>
-                          <strong>Email: </strong>
-                          {profile.email}
-                        </p>
-                        <p>
-                          <strong>Contact Number: </strong>
-                          {profile.contactNumber}
-                        </p>
                       </div>
-                    )}
+                    </form>
                   </div>
                 </div>
               ) : (

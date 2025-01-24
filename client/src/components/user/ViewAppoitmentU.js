@@ -57,7 +57,7 @@ export default function ViewAppointment() {
             <tbody>
               {appointments.map((appointment) => (
                 <tr key={appointment._id}>
-                  <td>{appointment.doctorName}</td>
+                  <td>{appointment.userName}</td>
                   <td>{appointment.phoneNo}</td>
                   <td>{appointment.email}</td>
                   <td>

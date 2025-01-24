@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import Api from "../../apis/Api";

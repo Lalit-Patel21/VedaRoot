@@ -28,10 +28,11 @@ export default {
   SIGN_IN: "http://localhost:5000/api/user/signIn",
   SIGN_UP: "http://localhost:5000/api/user",
   GET_USER_BY_ID: "http://localhost:5000/api/user",
-  UPDATE_USER: "http://localhost:5000/api/user/6782c3954e3925e04db3c057",
+  UPDATE_USER: "http://localhost:5000/api/user",
 
   SIGN_IND: "http://localhost:5000/api/doctor/signin",
   SIGN_UPD: "http://localhost:5000/api/doctor",
+  UPDATE_DOCTOR: "http://localhost:5000/api/doctor",
   FORGATE_PASSWORD_DOCTOR: "http://localhost:5000/api/doctor/forgetpassword",
   VERIFY_OTP_DOCTOR: "http://localhost:5000/api/doctor/verifyotp",
   SET_NEW_PASSWORD_DOCTOR: "http://localhost:5000/api/doctor/setnewpassword",

@@ -91,8 +91,22 @@ function App() {
         <Route path="/docsetnewpassword" element={<DoctorSetNewPassword />} />
         <Route path="/docupdatepassword" element={<DoctorUpdatePassword />} />
 
-        <Route path="/consult/:id" element={<DoctorConsult />} />
-        <Route path="/appointment/:id" element={<DoctorAppoitment />} />
+        <Route
+          path="/consult/:id"
+          element={
+            <Auth>
+              <DoctorConsult />
+            </Auth>
+          }
+        />
+        <Route
+          path="/appointment/:id"
+          element={
+            <Auth>
+              <DoctorAppoitment />
+            </Auth>
+          }
+        />
         <Route path="/forgatepassword" element={<ForgatePassword />} />
         <Route path="/verifyotp" element={<VerifyOtp />} />
         <Route path="/setnewpassword" element={<SetnewPassword />} />
